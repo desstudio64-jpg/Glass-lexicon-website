@@ -1,12 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <h1>This is the site</h1>h1
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lexicon</title>
+  <title>Glass Heart Lexicon</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background: #070707;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ── Top section: cover + header side by side ── */
+    .top-row {
+      display: flex;
+      border-bottom: 1px solid #313030;
+    }
+
+    /* Left: cover image, same height as header */
+    .cover {
+      flex: 0 0 30%;
+      background: #131313;
+      border-right: 1px solid #313030;
+      overflow: hidden;
+    }
+
+    .cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    /* Right: header text */
+    header {
+      flex: 1;
+      padding: 6rem 4rem 7rem 6rem;
+      text-align: center;
+      background: #070707;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    header h1 {
+      font-size: 4rem;
+      font-weight: normal;
+      color: #cc0000;
+      background-color: #000;
+      display: inline;
+      padding: 0 0.4rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: #cc0000;
+      background-color: #000;
+      display: inline-block;
+      padding: 0.6rem 0.6rem;
+      max-width: 600px;
+      text-align:center;
+      line-height: 1.8;
+    }
+
+    .buy-link {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 2.1rem;
+      color: #cc0000;
+      background-color: #000;
+      padding: 0.4rem 0.8rem;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .buy-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Bottom: slideshow full width ── */
+    .slideshow-wrapper {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slide-strip {
+      display: flex;
+      height: 100%;
+      min-height: 900px;
+      transition: transform 0.8s cubic-bezier(0.77, 0, 0.18, 1);
+      will-change: transform;
+    }
+
+    .slide {
+      flex: 0 0 33.333%;
+      border-right: 1px solid #0c0c0c;
+      background: #202020;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .slide:last-child {
+      border-right: none;
+    }
+  </style>
 </head>
 <body>
-  
+
+  <!-- Top row: cover image + header text -->
+  <div class="top-row">
+    <div class="cover">
+      <img src="Images/GLH Cover.png" alt="Glass Heart Lexicon cover">
+    </div>
+    <header>
+      <h1>Glass Heart Lexicon</h1>
+      <p>A catalog of incented words for the instincts and voids that live beyond ordinary language. With stark ink and painting echoing the weight of its definition this book reveals the horrid beauty hidden in the fractured obsessions, hungers, and cruelties that shape us when no one is watching. The Glass Heart Lexicon is a poetic mixture of dark psychology and art that capture the grotesque and ludicrous workings of the antisocial mind. For readers drawn to the strange, the unsettling and seductively unspoken.</p>
+      <a href="#" class="buy-link">Purchase the Glass Heart Lexicon here</a>
+    </header>
+  </div>
+
+  <!-- Bottom: scrolling images full width -->
+  <div class="slideshow-wrapper" id="slideshowWrapper">
+    <div class="slide-strip" id="slideStrip">
+      <div class="slide" style="background-image: url('Images/1GHL.jpg');"></div>
+      <div class="slide" style="background-image: url('Images/2GHL.jpg');"></div>
+      <div class="slide" style="background-image: url('Images/3GLH.jpg');"></div>
+      <div class="slide" style="background-image: url('Images/4GLH.jpg');"></div>
+    </div>
+  </div>
+
+  <script>
+    const strip = document.getElementById('slideStrip');
+
+    const VISIBLE = 3;
+    const slideWidthPct = 100 / VISIBLE;
+
+    const originals = Array.from(strip.children);
+    const total = originals.length;
+
+    originals.slice(0, VISIBLE).forEach(slide => strip.appendChild(slide.cloneNode(true)));
+
+    let current = 0;
+    let animating = false;
+
+    function nextSlide() {
+      if (animating) return;
+      animating = true;
+
+      current++;
+      strip.style.transition = 'transform 0.8s cubic-bezier(0.77, 0, 0.18, 1)';
+      strip.style.transform = `translateX(-${current * slideWidthPct}%)`;
+
+      setTimeout(() => {
+        if (current >= total) {
+          current = 0;
+          strip.style.transition = 'none';
+          strip.style.transform = 'translateX(0%)';
+        }
+        animating = false;
+      }, 800);
+    }
+
+    setInterval(nextSlide, 2500);
+  </script>
+
 </body>
 </html>
