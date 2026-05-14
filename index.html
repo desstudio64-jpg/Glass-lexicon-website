@@ -69,7 +69,7 @@
       display: inline-block;
       padding: 0.6rem 0.6rem;
       max-width: 600px;
-      text-align:center;
+      text-align: center;
       line-height: 1.8;
     }
 
@@ -87,7 +87,7 @@
       text-decoration: underline;
     }
 
-    /* ── Bottom: slideshow full width ── */
+    /* ── Slideshow ── */
     .slideshow-wrapper {
       overflow: hidden;
       position: relative;
@@ -112,6 +112,63 @@
     .slide:last-child {
       border-right: none;
     }
+
+    /* ── Info section ── */
+    .info-section {
+      background: #000;
+      padding: 6rem 4rem;
+      text-align: center;
+    }
+
+    .info-section p {
+      font-size: 4rem;
+      font-weight: normal;
+      color: #cc0000;
+      background-color: #000;
+      display: inline;
+      padding: 0 0.4rem;
+    }
+
+    /* ── Mobile responsive ── */
+    @media (max-width: 768px) {
+      .top-row {
+        flex-direction: column;
+      }
+
+      .cover {
+        flex: 0 0 auto;
+        height: 60vw;
+      }
+
+      header {
+        padding: 2rem;
+      }
+
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      header p {
+        font-size: 0.95rem;
+        max-width: 100%;
+      }
+
+      .buy-link {
+        font-size: 1.2rem;
+      }
+
+      .slide {
+        flex: 0 0 100%;
+      }
+
+      .info-section {
+        padding: 3rem 2rem;
+      }
+
+      .info-section p {
+        font-size: 2rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -123,12 +180,12 @@
     </div>
     <header>
       <h1>Glass Heart Lexicon</h1>
-      <p>A catalog of incented words for the instincts and voids that live beyond ordinary language. With stark ink and painting echoing the weight of its definition this book reveals the horrid beauty hidden in the fractured obsessions, hungers, and cruelties that shape us when no one is watching. The Glass Heart Lexicon is a poetic mixture of dark psychology and art that capture the grotesque and ludicrous workings of the antisocial mind. For readers drawn to the strange, the unsettling and seductively unspoken.</p>
-      <a href="#" class="buy-link">Purchase the Glass Heart Lexicon here</a>
+      <p>A catalog of invented words for the instincts and voids that live beyond ordinary language. With stark ink and paintings echoing the weight of their definitions, this book reveals the horrid beauty hidden in the fractured obsessions, hungers, and cruelties that shape us when no one is watching. The Glass Heart Lexicon is a poetic mixture of dark psychology and art that captures the grotesque and ludicrous workings of the antisocial mind. For readers drawn to the strange, the unsettling, and the seductively unspoken.</p>
+      <a href="#" class="buy-link">Purchase The Glass Heart Lexicon Here</a>
     </header>
   </div>
 
-  <!-- Bottom: scrolling images full width -->
+  <!-- Scrolling images full width -->
   <div class="slideshow-wrapper" id="slideshowWrapper">
     <div class="slide-strip" id="slideStrip">
       <div class="slide" style="background-image: url('Images/1GHL.jpg');"></div>
@@ -136,6 +193,11 @@
       <div class="slide" style="background-image: url('Images/3GLH.jpg');"></div>
       <div class="slide" style="background-image: url('Images/4GLH.jpg');"></div>
     </div>
+  </div>
+
+  <!-- Info section below slideshow -->
+  <div class="info-section">
+    <p>Contact us at theglassheartlexicon@gmail.com or P.o. box 8014 Gray, TN, 37615</p>
   </div>
 
   <script>
